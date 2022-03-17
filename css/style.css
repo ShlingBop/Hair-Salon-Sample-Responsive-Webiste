@@ -1,0 +1,718 @@
+/* Box Model Hack */
+@import url('https://fonts.googleapis.com/css2?family=Nunito&family=Pacifico&display=swap');
+* {
+  box-sizing: border-box;
+  font-family: 'Nunito', sans-serif;
+}
+
+/* Clear fix hack */
+.clearfix:after {
+     content: ".";
+     display: block;
+     clear: both;
+     visibility: hidden;
+     line-height: 0;
+     height: 0;
+}
+
+.clear {
+	clear: both;
+}
+
+/******************************************
+/* BASE STYLES
+/*******************************************/
+
+:root {
+   --background: black;
+}
+
+
+/******************************************
+/* LAYOUT
+/*******************************************/
+
+/* navigation styles start here */
+
+
+header {
+  background: var(--background);
+  text-align: center;
+  position: fixed;
+  z-index: 999;
+  width: 100%;
+  top: 0;
+}
+
+.logo {
+  color: white;
+  font-style: italic;
+  font-family: 'Pacifico', sans-serif;
+}
+
+.nav-toggle {
+  display: none;
+}
+
+.nav-toggle-label {
+  position: absolute;
+  top:0;
+  left:0;
+  margin-left: 1em;
+ 
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.nav-toggle-label span,
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+  display: block;
+  background: white;
+  height: 2px;
+  width: 2em;
+  border-radius: 2px;
+  position: relative;
+}
+
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+  content: '';
+  position: absolute;
+}
+
+.nav-toggle-label span::before {
+  bottom: 7px;
+}
+
+.nav-toggle-label span::after {
+  top: 7px;
+}
+
+nav {
+  position: absolute;
+  text-align: left;
+  top: 100%;
+  left: 0;
+  background:var(--background);
+  width: 100%;
+  transform: scale(1, 0);
+  transform-origin: top;
+  transition: transform 400ms ease-in-out;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+nav li {
+  margin-bottom: 1em;
+  margin-left: 1em;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: opacity 150ms ease-in-out;
+}
+
+nav a:hover {
+  color: white;
+}
+
+.nav-toggle:checked ~ nav {
+  transform: scale(1,1)
+}
+
+.nav-toggle:checked ~ nav a {
+  opacity: 1;
+  transition: opacity 250ms ease-in-out;
+}
+
+@media screen and (min-width: 800px) {
+  .nav-toggle-label {
+    display: none;
+  }
+
+  header {
+    display: grid;
+    grid-template-columns: 1fr auto minmax(600px, 3fr) 1fr;
+  }
+
+  .logo {
+    grid-column: 2 / span 1;
+  }
+
+  nav {
+    all: unset;
+    grid-column: 3 / 4;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  nav ul {
+    display: flex;
+  }
+
+  nav li {
+    margin-bottom: 0;
+  }
+
+  nav a {
+    opacity: 1;
+    position: relative;
+  }
+
+  nav a::before {
+    content:'';
+    display: block;
+    height: 5px;
+    background: black;
+    position: absolute;
+    bottom: -.75em;
+    left: 0;
+    right: 0;
+    transform: scale(0, 1);
+    transform-origin: left;
+    transition: transform ease-in-out 250ms;
+  }
+
+  nav a:hover::before {
+    transform: scale(1,1);
+  }
+}
+
+main {
+  background-image: url("/Images/george-bohunicky-qJKT2rMU0VU-unsplash.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  clip-path: polygon(0 0, 100% 0, 95% 100%, 0% 85%);
+  
+}
+
+@media screen and (max-width: 700px) {
+  main {
+    background-position: 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+}
+
+main div {
+  position: absolute;
+  width: 40%;
+  top: 15%;
+  margin-left: 5%;
+  color: black;
+  text-transform: uppercase;
+}
+
+main div h1 {
+  font-size: 3.5rem;;
+}
+
+main div p {
+  font-size: 1.5rem;
+}
+
+.book-online {
+  width: 15%;
+  left: 60%;
+  top: 30%;
+  background-color: rgba(0, 0, 0);
+  opacity: 1;
+  color: white;
+  padding: 2rem 1.5rem 4rem 1.5rem;
+  border-radius: 5px;
+
+}
+
+.book-online p{
+  margin-bottom: 4rem;
+}
+
+.book-online a {
+  color: black;
+  text-decoration: none;
+  background-color: white;
+  padding: 1rem;
+  border-radius: 5px;
+}
+
+.service-button {
+  background-color: rgb(0, 0, 0);
+  width: 150px;
+  height: 50px;
+  margin-left: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  position: absolute;
+  top: 65%;
+}
+
+.service-button a{
+  color: white;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+@media screen and (max-width: 1200px) {
+  .book-online {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  main div p {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  main div {
+    width: 80%;
+  }
+}
+
+.expert {
+  display: flex;
+  text-align: center;
+  margin: 10rem 5rem;
+  font-size: 1.5rem;
+}
+
+.expert i {
+  font-size: 3rem;
+}
+
+.expert div {
+  padding: 2rem;
+}
+
+@media screen and (max-width: 1000px) {
+  .expert {
+    display: block;
+  }
+
+  .expert div {
+    padding: 0;
+  }
+}
+
+.momentum{
+  width:100%;
+  text-align: center;
+  padding: 2rem;
+  display: flex;
+  background: rgb(182, 182, 182);
+}
+
+.momentum div{
+  margin: 0 4rem;
+  font-size: 1.8rem;
+}
+
+.momentum img {
+  width: 50%;
+  border-radius: 5px;
+}
+
+.momentum p {
+  margin-bottom: 7rem;
+  
+}
+
+.momentum a {
+  color: white;
+  text-decoration: none;
+  background: black;
+  border-radius: 5px;
+  padding: 1rem 2rem;
+}
+
+@media screen and (max-width: 1000px) {
+  .momentum {
+    flex-direction: column;
+    text-align: left;
+    padding: 0;
+    margin: 0;
+  }
+
+  .momentum img {
+    width: 100%;
+    margin: 10% auto;
+  }
+
+  .momentum a{
+    padding: 0.5rem;
+  }
+}
+
+.stylers {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  text-align: center;
+  margin-bottom: 5%;
+}
+
+.stylers div {
+  font-size: 1.6rem;
+}
+
+.stylers h2 {
+  width: 100%;
+  text-align: center;
+  font-size: 3rem;
+  padding-top: 5%;
+}
+
+.line {
+  width: 100%;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5%;
+
+}
+
+.line div {
+  background: black;
+  height: 5px;
+  width: 70px;
+  border-radius: 5px;
+
+}
+
+/* Stylist Social Hover*/
+
+.container {
+  position: relative;
+}
+
+.image {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+.container:hover .image {
+  opacity: 0.3;
+}
+
+.container:hover .middle {
+  opacity: 1;
+}
+
+.text {
+  background-color: black;
+  font-size: 20px;
+  padding: 16px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.middle a{
+  color: white;
+}
+
+.offer {
+  display: flex;
+  background: rgb(182, 182, 182);
+  justify-content: center;
+  text-transform: uppercase;
+}
+.offer img {
+  width: 35%;
+  margin: 2rem;
+  border-radius: 5px;
+}
+
+.offer div {
+  width: 40%;
+  margin: 5rem;
+  font-size: 2rem;
+}
+
+.offer div a {
+  color: white;
+  background: black;
+  text-decoration: none;
+  padding: 1rem;
+  border-radius: 5px;
+  font-size: 1.8rem;
+}
+
+@media screen and (max-width:1050px) {
+
+  .offer {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .offer div {
+    width: 100%;
+    text-align: center;
+    margin-top: 0;
+  }
+  
+}
+
+.looks {
+  text-align: center;
+  font-size: 2.5rem;
+  margin: 5% 0;
+}
+
+
+
+.lookBookImages {
+  width: 70%;
+  margin: 0 auto;
+  position: relative;
+  left: 2%;
+}
+
+.lookBookImages img{
+  width: 100%;
+  height: 100%;
+}
+
+.lookBookImages div {
+  width: 30%;
+  margin: .5%;
+  float: left;
+}
+
+.lookBookImages .lookOne {
+  height: 500px;
+}
+.lookBookImages .lookTwo {
+ height: 300px;
+}
+.lookBookImages .lookThree {
+ height: 300px
+}
+
+.lookBookImages .lookFour {
+  height: 500px;
+}
+.lookBookImages .lookFive {
+  height: 300px;
+  object-fit: cover;
+}
+.lookBookImages .lookSix {
+  height: 500px;
+  position: relative;
+  top: -200px;
+  object-fit: cover;
+}
+
+@media screen and (max-width: 1200px) {
+  
+  .lookBookImages div{
+    width: 40%;
+  }
+  #lookBook {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    left: 0;
+  }
+
+  #lookBook .look {
+    top: 0;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .lookBookImages div {
+    width: 100%;
+    height: 80%;
+  }
+}
+
+footer {
+  background: black;
+  color:white;
+  clear: both;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.footerItems {
+  width:20%;
+  border: 1px solid black;
+  text-align: left;
+}
+
+.socialFooter i{
+  margin-right: 5%;
+  background-color: white;
+  color: black;
+  font-size: 2rem;
+  padding: 0.5rem;
+  border-radius: 50%;
+}
+
+.footerItems h5 {
+  font-size: 2rem;
+}
+
+.footerLine{
+  width: 50px;
+  height: 5px;
+  background: white;
+  border-radius: 5px;
+  margin-bottom: 3rem;
+}
+
+.contactFooter ul{
+  list-style: none;
+  padding: 0;
+}
+
+.contactFooter ul li {
+  margin-bottom: 1rem;
+}
+
+.popularPosts img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+}
+
+.posts {
+ display: flex;
+ flex-wrap: wrap;
+}
+
+.posts h6 {
+  font-size: 1rem;
+  position: relative;
+  top: -2rem;
+  left: 2rem;
+
+}
+
+.posts span {
+  font-size: 0.8rem;
+  width: 50%;
+  position: relative;
+  left: 40%;
+  top: -2rem;
+}
+
+.footerImages {
+  display: flex;
+  flex-wrap: wrap;
+  width: 80%;
+}
+
+.footerImages img{
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  margin: 0 1rem 1rem 0;
+}
+.copyright {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0.5rem;
+}
+
+.copyright p {
+  width: 50%;
+}
+
+.copyright ul {
+  list-style: none;
+  display: flex;
+  padding: 0;
+  width: 50%;
+}
+
+.copyright ul li {
+  margin: 0 1%;
+}
+.copyright ul li a {
+  color: white;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+@media screen and (max-width: 1650px) {
+  .footerLookbook {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1450px) {
+  .popularPosts {
+    display: none;
+  }
+  footer {
+    justify-content: space-around;
+  }
+  .footerItems {
+    width: 40%;
+  }
+  .copyright {
+    width: 100%;
+    
+  }
+} 
+
+@media screen and (max-width: 950px) {
+  .copyright ul{
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .contactFooter {
+    display: none;
+  }
+
+  .copyright ul {
+    display: none;
+  }
+  .copyright p {
+    width: 100%;
+  }
+}
+
+
+
+/******************************************
+/* ADDITIONAL STYLES
+/*******************************************/
