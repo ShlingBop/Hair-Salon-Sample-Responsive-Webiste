@@ -711,6 +711,9 @@ footer {
   }
 }
 
+.footerItems h5 {
+  text-transform: uppercase;
+}
 
 
 /******************************************
