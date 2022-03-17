@@ -512,9 +512,13 @@ main div p {
 }
 .lookBookImages .lookTwo {
  height: 300px;
+ object-fit: cover;
+ object-position: center 0%;
 }
 .lookBookImages .lookThree {
- height: 300px
+ height: 300px;
+ object-fit: cover;
+ object-position: center 20%;
 }
 
 .lookBookImages .lookFour {
@@ -523,12 +527,12 @@ main div p {
 .lookBookImages .lookFive {
   height: 300px;
   object-fit: cover;
+  object-position: center 20%;
 }
 .lookBookImages .lookSix {
   height: 500px;
   position: relative;
   top: -200px;
-  object-fit: cover;
 }
 
 @media screen and (max-width: 1200px) {
